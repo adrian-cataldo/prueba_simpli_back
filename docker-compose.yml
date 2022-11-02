@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  empleado_perfecto_database:
+    image: mariadb:10.9.3
+    volumes:
+      - empleado_perfecto_database_dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=empleado_perfecto"
+      - "MYSQL_ROOT_PASSWORD=mypass"
+    ports:
+      - 3306:3306
+
+  empleado_perfecto:
+    container_name: empleado_perfecto
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - empleado_perfecto_database
+
+volumes:
+  empleado_perfecto_database_dbdata:
