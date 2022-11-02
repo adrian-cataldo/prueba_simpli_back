@@ -14,3 +14,11 @@ class EmployeesViewSet(viewsets.ModelViewSet, SoftDeleteViewSet):
     serializer_class = EmployeeSerializer
     querysetTrashed = Employee.all_objects.all().dead().order_by('-id')
 
+    def get_queryset(self):
+        queryset = self.queryset
+
+        company = self.request.query_params.get('company', None)
+        if company:
+            queryset = queryset.filter(company__rut=company)
+
+        return queryset
