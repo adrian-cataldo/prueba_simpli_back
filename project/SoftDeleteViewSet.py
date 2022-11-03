@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django.db.models.query import QuerySet
 
 """
 Adds urls for soft-deleted elements, returns deleted_at
@@ -12,7 +13,7 @@ Example for centers:
 class SoftDeleteViewSet(viewsets.ViewSet):
 
     def full_queryset(self, queryset):
-        return queryset
+        return queryset.all()
 
     def get_queryset(self):
         return self.full_queryset(self.queryset)
