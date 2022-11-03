@@ -1,4 +1,6 @@
-**Proyecto 'Tu Empleado Perfecto' - API**
+**Proyecto 'Tu Empleado Perfecto' - BACKEND**
+
+Este proyecto usa una base de datos Mysql que se levanta con docker-compose
 
 Requerimientos:
 
