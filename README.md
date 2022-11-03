@@ -11,5 +11,5 @@ Inicializar con el comando docker-compose up
 
 URL:
 
-http://localhost:8000/
+http://18.212.251.1:8000/
 
