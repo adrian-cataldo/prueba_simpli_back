@@ -15,10 +15,12 @@ class EmployeesViewSet(viewsets.ModelViewSet, SoftDeleteViewSet):
     querysetTrashed = Employee.all_objects.all().dead().order_by('-id')
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = self.queryset.all()
 
-        company = self.request.query_params.get('company', None)
-        if company:
-            queryset = queryset.filter(company__rut=company)
+        company_id = self.request.query_params.get('company_id', None)
+        if company_id:
+            company = Company.objects.filter(id=company_id).first()
+            queryset = queryset.filter(company=company)
 
         return queryset
+
